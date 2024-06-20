@@ -39,9 +39,15 @@ function updateValue(num){
     const output = document.querySelector(".output");
     if (output.textContent.includes('.')){
         let rightValues = countDecimal(output.textContent);
-        output.textContent = parseFloat(output.textContent) + parseFloat(num) * 0.1 / 10**rightValues;
-    } else {
+        if (parseFloat(output.textContent) >= 0){
+        output.textContent = parseFloat(output.textContent) + parseFloat(num) * 0.1 / 10**rightValues} 
+        else {
+            output.textContent = parseFloat(output.textContent) - parseFloat(num) * 0.1 / 10**rightValues
+        };
+    } else if (parseFloat(output.textContent) >= 0){
     output.textContent = parseFloat(output.textContent) * 10 + parseFloat(num);
+    } else {
+        output.textContent = parseFloat(output.textContent) * 10 - parseFloat(num);
     }
 }
 
@@ -57,7 +63,7 @@ function resetValue(){
 
 function changeSign(){
     const output = document.querySelector(".output");
-    output.textContent = parseFloat(-output.textContent);
+    output.textContent = multiply(output.textContent, -1);
 }
 
 function percentagise(){
@@ -72,12 +78,10 @@ function addDot(){
 
 const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) => {
-  // Add a click listener
   number.addEventListener("click", () => {
     updateValue(number.textContent);
 });
 });
-
 
 const dot = document.querySelector(".dot");
 dot.addEventListener("click", () => {
@@ -95,3 +99,10 @@ const percentage = document.querySelector(".percentage");
 percentage.addEventListener("click", () => {
 percentagise()});
 
+const operators = document.querySelectorAll(".operator");
+operators.forEach((operator) => {
+  // Add a click listener
+  operator.addEventListener("click", () => {
+    updateValue(number.textContent);
+});
+});
