@@ -37,19 +37,19 @@ function operate(a, operator, b){
 
 function updateValue(num){
     const output = document.querySelector(".output");
-    if (output.textContent.includes('.')){
-        let rightValues = countDecimal(output.textContent);
-        if (parseFloat(output.textContent) >= 0){
-        output.textContent = parseFloat(output.textContent) + parseFloat(num) * 0.1 / 10**rightValues} 
-        else {
-            output.textContent = parseFloat(output.textContent) - parseFloat(num) * 0.1 / 10**rightValues
-        };
-    } else if (parseFloat(output.textContent) >= 0){
-    output.textContent = parseFloat(output.textContent) * 10 + parseFloat(num);
+    let currVal = output.textContent.trim();
+    let number = num.trim();
+
+    // Handles 0 by itself and adding more zero (edge)
+    if (currVal == "0" && number == "0"){
+        return;
+    } else if (currVal == "0" && number != "0"){
+        output.textContent = number;
     } else {
-        output.textContent = parseFloat(output.textContent) * 10 - parseFloat(num);
+        output.textContent = currVal + number;
     }
-}
+};
+
 
 function changeValue(num){
     const output = document.querySelector(".output");
@@ -78,7 +78,9 @@ function percentagise(){
 
 function addDot(){
     const output = document.querySelector(".output");
-    output.textContent = parseFloat(output.textContent)+".";
+    if (!output.textContent.includes(".")) {
+        output.textContent = parseFloat(output.textContent)+".";
+    }
 }
 
 function addOperator(operator){
@@ -124,7 +126,10 @@ operators.forEach((operator) => {
 
 const equal = document.querySelector(".equals");
 equal.addEventListener("click", () => {
-    const output = document.querySelector(".output");
-    secondNumber =  parseFloat(output.textContent);
-    output.textContent = operate(firstNumber, operatorC.trim(), secondNumber);
+    if (operatorC != undefined){
+        const output = document.querySelector(".output");
+        secondNumber =  parseFloat(output.textContent);
+        output.textContent = operate(firstNumber, operatorC.trim(), secondNumber);
+        operatorC = '';
+    }
     });
