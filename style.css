@@ -85,6 +85,11 @@ button:hover{
     color: white;
 }
 
+.equals {
+    background-color: orange;
+    color: white;
+}
+
 .clear {
     background-color: grey;
     color: black;

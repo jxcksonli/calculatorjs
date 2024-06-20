@@ -1,5 +1,5 @@
 let firstNumber;
-let operator;
+let operatorC;
 let secondNumber;
 
 function add(a, b){
@@ -18,7 +18,7 @@ function divide(a, b){
     if (b == 0){
         return "Undefined";
     };
-    return (a / b).toFixed(10);
+    return (a / b).toFixed(4);
 }
 
 function operate(a, operator, b){
@@ -51,6 +51,11 @@ function updateValue(num){
     }
 }
 
+function changeValue(num){
+    const output = document.querySelector(".output");
+    output.textContent = num;
+}
+
 function countDecimal(num){
     const decimalIndex = num.indexOf('.');
     return num.length - decimalIndex -1;
@@ -74,6 +79,11 @@ function percentagise(){
 function addDot(){
     const output = document.querySelector(".output");
     output.textContent = parseFloat(output.textContent)+".";
+}
+
+function addOperator(operator){
+    const output = document.querySelector(".output");
+    output.textContent = String(output.textContent) + String(operator);
 }
 
 const numbers = document.querySelectorAll(".number");
@@ -103,6 +113,18 @@ const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) => {
   // Add a click listener
   operator.addEventListener("click", () => {
-    updateValue(number.textContent);
+    const output = document.querySelector(".output");
+    operatorC = operator.textContent
+    firstNumber = parseFloat(output.textContent);
+
+    addOperator(operator.textContent);
+    resetValue();
 });
 });
+
+const equal = document.querySelector(".equals");
+equal.addEventListener("click", () => {
+    const output = document.querySelector(".output");
+    secondNumber =  parseFloat(output.textContent);
+    output.textContent = operate(firstNumber, operatorC.trim(), secondNumber);
+    });
