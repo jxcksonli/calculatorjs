@@ -1,15 +1,15 @@
 * {
-    font-family: Helvetica;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     background: rgba( 196, 202, 210 );
 }
 
 #container{
     display: flex;
     flex-direction: column;
-    background-color: transparent;
-    width: 1000px;
-    height: 2000px;
+    width: 600px;
+    height: 1200px;
     align-items: center;
+    background-color: transparent;
     margin: auto;
 }
 
@@ -22,16 +22,14 @@
     display: flex;
     flex-direction: column;
     justify-items: center;
-    width: 1000px;
-    height: 1200px;
-    background-color: black;
-    margin: auto;
 }
 
 .output {
     text-align: right;
     background-color: black;
     color: white;
+    height: 60px;
+    font-size: 32px;
 }
 .container{
     display: flex;
@@ -42,7 +40,6 @@
     display: flex;
     flex-direction: row;
 }
-
 
 .lastrow{
     display: flex;
@@ -57,11 +54,20 @@
 
 button {
     border-radius: 50%;
+    font-size: 32px;
+    width: 80px;
+    height: 80px;
 }
 
 .number {
     background-color: black;
     color: white;
+}
+
+#zero {
+    width: 160px;
+    border-radius: 20%;
+    text-align: left;
 }
 
 .dot {
@@ -74,7 +80,17 @@ button {
     color: white;
 }
 
-.misc {
+.clear {
+    background-color: grey;
+    color: black;
+}
+
+.dec {
+    background-color: grey;
+    color: black;
+}
+
+.sign {
     background-color: grey;
     color: black;
 }
